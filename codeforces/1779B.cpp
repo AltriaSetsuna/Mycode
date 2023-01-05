@@ -14,32 +14,23 @@ inline void solve()
    if(n==3)
    {
       yesno(0);
+      return;
    }
-   else
+   yesno(1);
+   if(n%2==1)
    {
-      yesno(1);
-      
-      if((n&1)==0)
+      LL even = n / 2, odd = -even + 1;
+      for (LL i = 1; i <= n;i++)
       {
-         n >>= 1;
-         for (LL i = 0; i < n;i++)
-         {
-            cout << 1 << ' ' << -1 << ' ';
-         }
+         cout << (i % 2 == 1 ? odd : even) << " \n"[i == n];
       }
-      else
+   }
+   else 
+   {
+      for (LL i = 0; i < n;i++)
       {
-
-         LL odd= n - 2 >> 1;
-         LL even = (odd+ 1)*-1;
-         n >>= 1;
-         for (LL i = 0; i < n;i++)
-         {
-            cout << odd << ' ' << even << ' ';
-         }
-         cout << odd;
+         cout<<(i%2==0?1:-1)<<" \n"[i==n-1];
       }
-      cout << endl;
    }
    return;
 }

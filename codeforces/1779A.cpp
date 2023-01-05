@@ -14,43 +14,23 @@ inline void solve()
     string s;
     cin >> s;
     bool l = 0, r = 0;
-    LL maxL = 0, minR = LLONG_MAX;
-    LL ans;
-    for (LL i = 0; i < n;i++)
-    {
-        if(s[i]=='L')
-        {
-            l = 1;
-            maxL = max(maxL, i);
-        }
-        else
-        {
-            minR = min(minR, i);
-            r = 1;
-        }
-    }
     for (LL i = 1; i < n;i++)
     {
         if(s[i]!=s[i-1])
         {
-            ans = i;
+            if(s[i]=='L')
+            {
+                cout << 0 << endl;
+                return;
+            }
+            else 
+            {
+                cout << i << endl;
+                return;
+            }
         }
     }
-    if (l == 0 || r == 0)
-    {
-        cout << -1 << endl;
-    }
-    else
-    {
-        if (maxL > minR)
-        {
-            cout << 0 << endl;
-        }
-        else
-        {
-            cout << ans << endl;
-        }
-    }
+    cout << -1 << endl;
     return;
 }
 

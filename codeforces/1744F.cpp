@@ -11,21 +11,25 @@ inline void solve()
 {
    LL n;
    cin >> n;
-   vector<LL> a(n);
+   vector<LL> pos(n);
    for (LL i = 0; i < n;i++)
    {
-      LL x;
-      cin >> x;
-      a[x] = i;
+      LL t;
+      cin >> t;
+      pos[t] = i;
    }
-   LL l, r, ans = 1;
-   l = r = a[0];
-   for (LL i = 2; i <= n;i++)
+   LL l = pos[0], r = pos[0], ans = 1;
+   for (LL len = 2; len <= n;len++)
    {
-      LL u = i - 1 >> 1;
-      l = min(l, a[u]), r = max(r, a[u]);
-      LL mins = max(0LL,r-i+1), maxs = min(l,n-i);
-      ans += max(0LL, maxs - mins + 1);
+      LL mex = (len + 1) / 2;
+      l = min(l, pos[mex - 1]);
+      r = max(r, pos[mex - 1]);
+      LL minR = max(r, len - 1);
+      LL maxR = min(l + len - 1, n - 1);
+      ans += max(0LL, maxR - minR + 1);
+      // LL minL = max(0LL, r - len + 1);
+      // LL maxL = min(n - len, l);
+      // ans += max(0LL, maxL - minL + 1);
    }
    cout << ans << endl;
    return;
